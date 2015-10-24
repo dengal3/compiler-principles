@@ -7,31 +7,41 @@
 
 KEYWORD (?i:strict|graph|digraph|subgraph|node|edge)
 ID ([a-zA-Z]|_)([a-zA-Z]|[0-9]|_)*
+STRING \"(.|(\/\"))*\"
+NUMBER (-)?[0-9]+(\.[0-9]+)?
 BLANK \t|\ |\n
 DIVIDER ;|,|\{|\}|\[|\]
 OTHERS (--)|(->)|(=)
 COMMENTS (((\/\/)|#)(.)*(\n))|((\/\*)(.|\n)*(\*\/))
+ALL {KEYWORD}|{ID}|{STRING}|{NUMBER}|{BLANK}|{DIVIEDR}|{OTHERS}|{COMMENTS}
 
 %%
 
 {KEYWORD} {
-    printf("keyword %s\n", yytext);
+    printf("%s\n", yytext);
 }
 
 {ID} {
-    printf("id %s\n", yytext);
+    printf("%s\n", yytext);
+}
+
+{STRING} {
+    printf("%s\n", yytext);
+}
+
+{NUMBER} {
+    printf("%s\n", yytext);
 }
 
 {BLANK} {
-    
 }
 
 {DIVIDER} {
-    printf("divider %s\n", yytext);
+    printf("%s\n", yytext);
 }
 
 {OTHERS} {
-    printf("others %s\n", yytext);
+    printf("%s\n", yytext);
 }
 
 {COMMENTS} {

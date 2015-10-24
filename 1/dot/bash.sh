@@ -1,5 +1,14 @@
 #!/bin/bash
-lex *.lex
-gcc lex.yy.c -ll
-./a.out < input.dot > output.txt
-cat output.txt
+option="$1"
+
+
+if [ "${option}" = clean ];
+    then
+    find ./ -not -name "*.lex" -not -name "*input*" -not -name "*output*" -not -name "*.sh" -type f -print0 | xargs -0 rm
+else
+    lex *.lex
+    gcc lex.yy.c -ll
+    ./a.out < input.dot > output.txt
+    echo "diff output.good and output.txt: "
+    diff output.good output.txt
+fi
