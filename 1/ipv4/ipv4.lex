@@ -3,7 +3,6 @@
     #include "stdlib.h"
     #include "string.h"
 
-    int count = 0;
 %}
 
 ENTER \n
