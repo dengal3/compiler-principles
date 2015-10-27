@@ -15,7 +15,18 @@ OTHERS (--)|(->)|(=)
 COMMENTS (((\/\/)|#)(.)*(\n))|((\/\*)(.|\n)*(\*\/))
 ALL {KEYWORD}|{ID}|{STRING}|{NUMBER}|{BLANK}|{DIVIEDR}|{OTHERS}|{COMMENTS}
 
+
+%s comment
+
 %%
+
+"/*"          BEGIN(comment);
+
+<comment>[^*\n]*        /* eat anything thiat's not a '*' */
+<comment>"*"+[^*/\n]*   /* eat up '*'s not followed by '/'s */
+<comment>\n            
+<comment>"*"+"/"        BEGIN(INITIAL);
+
 
 {KEYWORD} {
     printf("%s\n", yytext);
@@ -44,8 +55,5 @@ ALL {KEYWORD}|{ID}|{STRING}|{NUMBER}|{BLANK}|{DIVIEDR}|{OTHERS}|{COMMENTS}
     printf("%s\n", yytext);
 }
 
-{COMMENTS} {
-    
-}
 
 %%

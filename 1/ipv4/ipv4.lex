@@ -30,6 +30,10 @@ INVALID ^(.)*
     }
 }
 
+{ENTER}$ {
+    printf("\nINVALID");
+}
+
 {INVALID} {
     printf("INVALID");
 }
