@@ -28,7 +28,12 @@ ALL {KEYWORD}|{ID}|{STRING}|{NUMBER}|{BLANK}|{DIVIEDR}|{OTHERS}|{COMMENTS}
 <comment>"*"+"/"        BEGIN(INITIAL);
 
 
+
 {KEYWORD} {
+    printf("%s\n", yytext);
+}
+
+{STRING} {
     printf("%s\n", yytext);
 }
 
@@ -36,9 +41,6 @@ ALL {KEYWORD}|{ID}|{STRING}|{NUMBER}|{BLANK}|{DIVIEDR}|{OTHERS}|{COMMENTS}
     printf("%s\n", yytext);
 }
 
-{STRING} {
-    printf("%s\n", yytext);
-}
 
 {NUMBER} {
     printf("%s\n", yytext);
