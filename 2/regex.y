@@ -7,7 +7,6 @@
     #include "node.h"
     extern int parent_count;
     void yyerror (char const *);
-    int parent_counter = 0;
     char temp[100]; 
 %}
 
